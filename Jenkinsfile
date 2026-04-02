@@ -24,7 +24,7 @@ pipeline {
 
         stage('Run Container') {
             steps {
-                sh 'docker run -d -p 8081:8090 my-app || true'
+                sh 'docker run -d -p 8090:8090 my-app || true'
             }
         }
     }
