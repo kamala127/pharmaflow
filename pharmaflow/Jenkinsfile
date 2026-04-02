@@ -3,21 +3,16 @@ pipeline {
 
     stages {
 
-        stage('Clone') {
-            steps {
-                git 'https://github.com/kamala127/pharmaflow'
-            }
-        }
-
         stage('Build') {
             steps {
-                sh 'mvn clean install'
+                sh 'chmod +x mvnw'
+                sh './mvnw clean install'
             }
         }
 
         stage('Test') {
             steps {
-                sh 'mvn test'
+                sh './mvnw test'
             }
         }
 
@@ -29,7 +24,7 @@ pipeline {
 
         stage('Run Container') {
             steps {
-                sh 'docker run -d -p 8081:8080 my-app'
+                sh 'docker run -d -p 8081:8080 my-app || true'
             }
         }
     }
